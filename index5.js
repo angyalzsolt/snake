@@ -11,14 +11,14 @@ const ctx = canvas.getContext('2d');
 
 function moveSnake(){
 	eatFood();
-	ctx.fillStyle = 'blue';
+	ctx.fillStyle = '#5eff73';
 	ctx.lineWidth = 1;
 	snake.forEach((block)=>{
-		ctx.strokeRect(block.x, block.y, 15, 10);
-		ctx.fillRect(block.x, block.y, 15, 10);
+		ctx.strokeRect(block.x, block.y, 25, 20);
+		ctx.fillRect(block.x, block.y, 25, 20);
 	})
 	let x = snake.shift();
-	ctx.clearRect(x.x - 1, x.y -1, 17, 12);
+	ctx.clearRect(x.x - 1, x.y -1, 27, 22);
 
 	// console.log(snake);
 }
@@ -29,7 +29,7 @@ function moveRight(){
 	}
 	checkField();
 	setTimeout(function x(){
-		let direction = snake[snake.length - 1].x + 17;
+		let direction = snake[snake.length - 1].x + 27;
 		snake.push({x: direction, y: snake[snake.length - 1].y});
 		let snakeBody = snake.filter((block)=>{
 			return block.x === direction && block.y === snake[snake.length-1].y;
@@ -46,7 +46,7 @@ function moveLeft(){
 	}
 	checkField();
 	setTimeout(function x(){
-		let direction = snake[snake.length - 1].x - 17;
+		let direction = snake[snake.length - 1].x - 27;
 		snake.push({x: direction, y: snake[snake.length - 1].y});
 		let snakeBody = snake.filter((block)=>{
 			return block.x === direction && block.y === snake[snake.length-1].y;
@@ -63,7 +63,7 @@ function moveDown(){
 	}
 	checkField();
 	setTimeout(function x(){
-		let direction = snake[snake.length - 1].y + 12;
+		let direction = snake[snake.length - 1].y + 22;
 		snake.push({x: snake[snake.length - 1].x, y: direction});
 		let snakeBody = snake.filter((block)=>{
 			return block.y === direction && block.x === snake[snake.length-1].x;
@@ -80,7 +80,7 @@ function moveUp(){
 	}
 	checkField();
 	setTimeout(function x(){
-		let direction = snake[snake.length - 1].y - 12;
+		let direction = snake[snake.length - 1].y - 22;
 		snake.push({x: snake[snake.length - 1].x, y: direction});
 			let snakeBody = snake.filter((block)=>{
 			return block.y === direction && block.x === snake[snake.length-1].x;
@@ -96,25 +96,25 @@ function moveUp(){
 function getFood(){
 	let i = true;
 	while(i){
-		foodX = Math.floor(Math.random() * Math.floor(284));
-		foodY = Math.floor(Math.random() * Math.floor(140));
+		foodX = Math.floor(Math.random() * Math.floor(490));
+		foodY = Math.floor(Math.random() * Math.floor(490));
 		if(snake.every(obj => Math.abs(obj.x - foodX) > 5 && Math.abs(obj.y - foodY) > 5)){
 			i = false;
 		}
 	}
 
 	// console.log('x', foodX, 'foodY', foodY)
-	ctx.fillStyle = 'red';
+	ctx.fillStyle = '#ff5e5e';
 	ctx.lineWidth = 1;
-	ctx.strokeRect(foodX, foodY, 15, 10);
-	ctx.fillRect(foodX, foodY, 15, 10);
+	ctx.strokeRect(foodX, foodY, 25, 20);
+	ctx.fillRect(foodX, foodY, 25, 20);
 };
 
 
 function eatFood(){
 	if(Math.abs(snake[snake.length - 1].x - foodX) < 15 && Math.abs(snake[snake.length - 1].y - foodY) < 15 ){
 		// console.log('I ate the food');
-		ctx.clearRect(foodX -1, foodY-1, 17, 12);
+		ctx.clearRect(foodX -1, foodY-1, 27, 22);
 		getFood();
 		snake.unshift({x: snake[0].x, y: snake[0].y});
 		count++;
@@ -130,7 +130,7 @@ function checkSnake(snakeBody){
 }
 
 function checkField(){
-	if(snake[snake.length - 1].x > 290 || snake[snake.length- 1].x < - 5 || snake[snake.length- 1].y > 145 || snake[snake.length- 1].y < -5){
+	if(snake[snake.length - 1].x > 490 || snake[snake.length- 1].x < - 5 || snake[snake.length- 1].y > 490 || snake[snake.length- 1].y < -5){
 		createMsg(`You hit the wall, your score: ${count}`);
 		return resetGame();
 	}
@@ -152,13 +152,13 @@ document.querySelector('#setup').addEventListener('submit', (e)=>{
 // moveSnake();
 function startGame(){
 	snake.forEach((block)=>{
-		ctx.clearRect(block.x - 1, block.y -1, 17, 12);
+		ctx.clearRect(block.x - 1, block.y -1, 27, 22);
 	});
 	snake = [
 		{x: 30, y: 40},
-		{x: 47, y: 40},
-		{x: 64, y: 40},
-		{x: 81, y: 40}
+		{x: 57, y: 40},
+		{x: 84, y: 40},
+		{x: 111, y: 40}
 	];
 	if(foodX !== undefined && foodY !== undefined){
 		return;
@@ -186,7 +186,7 @@ function startGame(){
 }
 
 function resetGame(){
-	ctx.clearRect(foodX -1, foodY-1, 17, 12);
+	ctx.clearRect(foodX -1, foodY-1, 27, 22);
 	foodx = undefined;
 	foodY = undefined;
 	prevKey = undefined;
