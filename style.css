@@ -117,3 +117,13 @@ button {
 	/* border: 1px solid black; */
 }
 
+#target ul {
+	text-align: center;
+	align-items: center;
+}
+
+#target li {
+	font-size: 17px;
+	text-align: left;
+	line-height: 3;
+}

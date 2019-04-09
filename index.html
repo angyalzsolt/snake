@@ -11,25 +11,27 @@
 <div class="container">
 	
 <div class="dashboard">
-	<form id="setup">
+	<form id="setup" method="POST" action="db.php">
 		<p>Username</p>
-		<input type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+		<input type="text" name="username" id="username" placeholder="Username" autocomplete="off" required>
+		<p id="errorMsg"></p>
 		<p>Difficulty</p>
 		<select name="difficulty">
 			<option value="150">Easy</option>
 			<option value="100">Medium</option>
 			<option value="75">Hard</option>
+			<option value="40">Extreme</option>
 		</select>
 		<br>
-		<button class="btn">Start</button>
+		<button class="btn" id="startBtn">Start</button>
 	</form>
 </div>
 
 <div id="test">
-	<canvas id="canvas" width="500px" height="500px"></canvas>
+	<canvas id="canvas" width="486" height="486"></canvas>
 </div>
 
-<div class="scoreboard">
+<div class="scoreboard" id="target">
 	<h1><u>ScoreBoard</u></h1>
 </div>
 
